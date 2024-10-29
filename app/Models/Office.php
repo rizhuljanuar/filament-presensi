@@ -9,10 +9,5 @@ class Office extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'latitude',
-        'longitude',
-        'radius',
-    ];
+    protected $guarded = ['id'];
 }
