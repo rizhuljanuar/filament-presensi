@@ -10,7 +10,12 @@ class Schedule extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $cats = [
+        'is_wfa' => 'boolean',
+        'is_banned' => 'boolean'
+    ];
+
+    protected $guarded = ['id'];
 
     public function user(): BelongsTo
     {

@@ -40,7 +40,8 @@ class ScheduleResource extends Resource
                                 Forms\Components\Select::make('office_id')
                                     ->relationship('office', 'name')
                                     ->required(),
-                                Forms\Components\Toggle::make('is_wfa')
+                                Forms\Components\Toggle::make('is_wfa'),
+                                Forms\Components\Toggle::make('is_banned')
                             ])
                     ])
             ]);
@@ -61,6 +62,8 @@ class ScheduleResource extends Resource
                     ->label('Name')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\ToggleColumn::make('is_banned')
+                    ->hidden(fn () => !Auth::user()->hasRole('super_admin')),
                 Tables\Columns\BooleanColumn::make('is_wfa')
                     ->label('Wfa'),
                 Tables\Columns\TextColumn::make('shift.name')
