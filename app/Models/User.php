@@ -46,4 +46,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function leaves(): HasMany
+    {
+        return $this->hasMany(Leave::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? url('storage/'. $this->image) : null;
+    }
 }
